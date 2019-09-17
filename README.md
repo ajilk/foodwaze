@@ -12,7 +12,7 @@ CORE FEATURES
 
 --- account mandatory ???
 
---- accounts public account vs student ( posts for public vs students (student account and public accounts) certain posts only come up for students )
+--- accounts public
 
 --- description for post ( additional information ) 
 
@@ -29,7 +29,7 @@ ADDITIONAL FEATURES
 
 --- are there drinks?
 
----
+--- account vs student ( posts for public vs students (student account and public accounts) certain posts only come up for students )
 
 --- alchohol or no alchohol? 
 
