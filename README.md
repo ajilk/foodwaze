@@ -1,7 +1,8 @@
 ## Find Free Food
 
 
-CORE FEATURES --
+CORE FEATURES
+----------------
 
 --- picture display of food 
 
@@ -35,6 +36,7 @@ ADDITIONAL FEATURES
 
 --- comment section (social network type of interaction) 
 
---- 
+END OF ADDITIONAL FEATURES
+--------------------------
 
 ### Tasks
