@@ -17,4 +17,12 @@
 
 --- tags for food types 
 
+--- description for post ( additional information ) 
+
+--- Possibility user rating (can i beleive this individuals listing)
+
+--- comment section (social network type of interaction) 
+
+--- 
+
 ### Tasks
