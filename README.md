@@ -1,23 +1,35 @@
 ## Find Free Food
---- Notifications - text -email of free food
+
+
+CORE FEATURES --
 
 --- picture display of food 
 
---- types of food kosher etc etc 
+--- Notifications - text -email of free food
 
 --- amount of food (estimate) 
 
+
+--- description for post ( additional information ) 
+
+END OF CORE FEATURES 
+----------------------
+
+
+ADDITIONAL FEATURES
+------------------------
+
+--- types of food kosher etc etc 
+
 --- radius closest food around 
 
---- posts for public vs students (student account and public accounts) certain posts only come up for students 
-
 --- are there drinks?
+
+--- posts for public vs students (student account and public accounts) certain posts only come up for students 
 
 --- alchohol or no alchohol? 
 
 --- tags for food types 
-
---- description for post ( additional information ) 
 
 --- Possibility user rating (can i beleive this individuals listing)
 
