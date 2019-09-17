@@ -10,6 +10,9 @@ CORE FEATURES
 
 --- amount of food (estimate) 
 
+--- account mandatory ???
+
+--- accounts public account vs student ( posts for public vs students (student account and public accounts) certain posts only come up for students )
 
 --- description for post ( additional information ) 
 
@@ -26,7 +29,7 @@ ADDITIONAL FEATURES
 
 --- are there drinks?
 
---- posts for public vs students (student account and public accounts) certain posts only come up for students 
+---
 
 --- alchohol or no alchohol? 
 
