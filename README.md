@@ -1,7 +1,6 @@
 ## Free Food
 
 CORE FEATURES
-
 ---
 
 - [ ] picture display of food 
@@ -12,7 +11,6 @@ CORE FEATURES
 - [ ] description for post ( additional information ) 
 
 ADDITIONAL FEATURES
-
 ---
 
 - [ ] types of food kosher etc etc 
