@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // import {BrowserRouter as Router, Route} from 'react-router'
+import Landing from './components/Landing';
 
 class App extends Component {
   state = {
@@ -25,6 +26,7 @@ class App extends Component {
         <h1>findfreefood</h1>
         <h5 className="text-danger">[ in-progess ]</h5>
         <h5>Server sent: {this.state.message}</h5>
+        <Landing/>
       </div>
     );
   }
