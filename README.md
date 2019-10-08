@@ -1,5 +1,8 @@
 ## findfreefood
 
+to push to heroku  
+`git push heroku`
+
 CORE FEATURES
 ---
 
