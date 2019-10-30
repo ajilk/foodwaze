@@ -10,7 +10,7 @@ class App extends Component {
   componentDidMount = () => this.fetchMessage();
 
   fetchMessage = async () => {
-    let ID = 1
+    let ID = 4
     await fetch(`api/${ID}`).then(res => {
       res.json().then(msg => {
         this.setState({ message: msg.body })
@@ -23,7 +23,7 @@ class App extends Component {
   render() {
     return (
       <div className="container text-center p-5">
-        <h1>findfreefood</h1>
+        <h1>foodwaze</h1>
         <h5 className="text-danger">[ in-progess ]</h5>
         <h5>Server sent: {this.state.message}</h5>
         <Landing/>
