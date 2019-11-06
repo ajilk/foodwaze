@@ -3,27 +3,11 @@ import './Landing.css';
 import { Link } from 'react-router';
 
 class Landing extends Component {
-<<<<<<< HEAD
-  constructor(props) {
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(event) {
-   
-    }
-
-  render() {
-    return (
-      <table>
-          <td class="hunter" value="hunter" onClick={this.handleClick}><img src={require("../logos/hunter-college-logo.png")} alt="hunter" /></td>
-=======
   render() {
     return (
       <table>
         <tr>
           <td class="hunter"><img src={require("../logos/hunter-college-logo.png")} alt="hunter" /></td>
->>>>>>> 88a99fda433dea39dadc64ff1cc37510e42890d5
           <td class="brook">
             <img src={require("../logos/brooklyn-college-logo.png")} alt="brooklyn" />
           </td>
