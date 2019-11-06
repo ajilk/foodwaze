@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-// import {BrowserRouter as Router, Route} from 'react-router'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import Landing from './components/Landing';
+import PostsPage from './pages/PostsPage';
+
 
 class App extends Component {
   state = {
@@ -27,6 +29,12 @@ class App extends Component {
         <h5 className="text-danger">[ in-progess ]</h5>
         <h5>Server sent: {this.state.message}</h5>
         <Landing/>
+     <Router>
+      <div>
+        <Route exact path="/" component={Landing} />
+        <Route path="/posts" component={PostsPage} />
+      </div>
+    </Router>  
       </div>
     );
   }

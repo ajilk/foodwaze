@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class PostsPpage extends Component {
+ class PostsPage extends Component {
   constructor() {
     const { schoolID } = this.props
   }
@@ -12,3 +12,4 @@ export default class PostsPpage extends Component {
     )
   }
 }
+export default PostsPage;
