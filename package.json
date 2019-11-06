@@ -1,0 +1,26 @@
+{
+  "name": "findfreefood",
+  "version": "1.0.0",
+  "description": "Find Free Food Server",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajilk/findfreefood.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajilk/findfreefood/issues"
+  },
+  "homepage": "https://github.com/ajilk/findfreefood#readme"
+}
