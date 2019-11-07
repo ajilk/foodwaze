@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 
  class PostsPage extends Component {
-  constructor() {
-    const { schoolID } = this.props
+  constructor(props) {
+    super(props);
+    this.state = {
+      schoolID: this.props.school  
   }
+}
   render() {
     return (
       <div>

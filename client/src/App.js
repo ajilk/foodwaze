@@ -28,7 +28,6 @@ class App extends Component {
         <h1>foodwaze</h1>
         <h5 className="text-danger">[ in-progess ]</h5>
         <h5>Server sent: {this.state.message}</h5>
-        <Landing/>
      <Router>
       <div>
         <Route exact path="/" component={Landing} />
