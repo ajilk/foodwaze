@@ -3,7 +3,7 @@ import HomePage from './pages/Home.page';
 import LoginPage from './pages/Login.page';
 import SignupPage from './pages/Signup.page';
 import NavbarComponent from './components/Navbar.component'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route} from 'react-router-dom'
 
 class App extends Component {
   render() {
