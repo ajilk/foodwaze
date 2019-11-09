@@ -8,7 +8,16 @@ export default class HomePage extends Component {
 
   onSearchFieldChange = (e) => this.setState({ searchFieldValue: e.target.value });
   onSearch = () => console.log('searched ' + this.state.searchFieldValue);
-  onFilterClick = (id) => console.log(`go to provider\'s post => id=${id}`);
+  filterLocation = (id) => {
+    let location = ''
+    switch (id) {
+      case 0: location = 'Brooklyn College'; break;
+      case 1: location = 'Hunter College'; break;
+      case 2: location = 'John Jay College'; break;
+      case 3: location = 'Queens College'; break;
+    }
+    this.setState({ searchFieldValue: location });
+  }
 
   render() {
     let filters = (
@@ -70,25 +79,19 @@ export default class HomePage extends Component {
       </div>
     );
 
+    let presetLocations = ['brooklyn-college', 'hunter-college', 'johnjay-college', 'queens-college'];
 
     return (
       <div>
         {searchField}
-        < div className="row py-3 justify-content-center" >
-          <div className="col-lg-6 col-10">
-            <FilterComponent imgSrc={require('../logos/brooklyn-college-logo.png')} onClick={() => this.onFilterClick(1)} />
-          </div>
-          <div className="col-lg-6 col-10">
-            <FilterComponent imgSrc={require('../logos/hunter-college-logo.png')} onClick={() => this.onFilterClick(2)} />
-          </div>
-          <div className="col-lg-6 col-10">
-            <FilterComponent imgSrc={require('../logos/johnjay-college-logo.png')} onClick={() => this.onFilterClick(3)} />
-          </div>
-          <div className="col-lg-6 col-10">
-            <FilterComponent imgSrc={require('../logos/queens-college-logo.png')} onClick={() => this.onFilterClick(4)} />
-          </div>
-        </div >
-      </div >
+        <div className="row p-3">
+          {locations.map((location, index) =>
+            <div className="col-lg-6 px-1">
+              <FilterComponent imgSrc={require(`../logos/${location}-logo.png`)} onClick={() => this.filterLocation(index)} />
+            </div>
+          )}
+        </div>
+      </div>
     );
   }
 }
