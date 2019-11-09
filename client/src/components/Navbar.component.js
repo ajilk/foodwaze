@@ -10,12 +10,14 @@ export default class NavbarComponent extends Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-light">
         <Link to='/' className="navbar-brand">foodwaze</Link>
-        <Link to='/login' className="ml-auto">
-          <button className="btn btn-outline-dark">login</button>
-        </Link>
-        <Link to='/signup' className="ml-2">
-          <button className="btn btn-outline-dark">signup</button>
-        </Link>
+        <div className="input-group">
+          <Link to='/login' style={{ textDecoration: 'none' }} className="ml-auto input-group-append">
+            <button className="btn btn-outline-dark border-right-0 rounded-left">login</button>
+          </Link>
+          <Link to='/signup' style={{ textDecoration: 'none' }} className="input-group-append">
+            <button className="btn btn-outline-dark rounded-right">signup</button>
+          </Link>
+        </div>
       </nav>
     )
   }
