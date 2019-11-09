@@ -85,7 +85,7 @@ export default class HomePage extends Component {
       <div>
         {searchField}
         <div className="row p-3">
-          {locations.map((location, index) =>
+          {presetLocations.map((location, index) =>
             <div className="col-lg-6 px-1">
               <FilterComponent imgSrc={require(`../logos/${location}-logo.png`)} onClick={() => this.filterLocation(index)} />
             </div>
