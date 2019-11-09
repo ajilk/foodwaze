@@ -7,34 +7,74 @@ export default class HomePage extends Component {
   }
 
   onSearchFieldChange = (e) => this.setState({ searchFieldValue: e.target.value });
-
   onSearch = () => console.log('searched ' + this.state.searchFieldValue);
-
   onFilterClick = (id) => console.log(`go to provider\'s post => id=${id}`);
 
   render() {
-    let searchField = (
-      <div className="row justify-content-center my-5">
-        <div className="col pr-0">
-          <input
-            type="text"
-            className="form-control rounded-0 border-right-0"
-            id="searchField"
-            placeholder={this.state.searchFieldValue}
-            onChange={this.onSearchFieldChange}>
-          </input>
+    let filters = (
+      <>
+        <div className="btn-group">
+          <button type="button" className="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Kosher
+          </button>
+          <div className="dropdown-menu">
+            <a className="dropdown-item" href="#">Kosher</a>
+            <a className="dropdown-item" href="#">Non-kosher</a>
+            <a className="dropdown-item" href="#">Either</a>
+          </div>
         </div>
-        <div className="col-1 pl-0">
-          <button onClick={this.onSearch} className="btn btn-outline-dark rounded-0">search</button>
+        <div className="btn-group">
+          <button type="button" className="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Distance
+          </button>
+          <div className="dropdown-menu">
+            <a className="dropdown-item" href="#">within 2 miles</a>
+            <a className="dropdown-item" href="#">within 5 miles</a>
+            <a className="dropdown-item" href="#">within 10 miles</a>
+          </div>
+        </div>
+        <div className="btn-group">
+          <button type="button" className="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Preference
+          </button>
+          <div className="dropdown-menu">
+            <a className="dropdown-item" href="#">Pizza</a>
+            <a className="dropdown-item" href="#">Sushi</a>
+            <a className="dropdown-item" href="#">Drinks</a>
+            <div className="dropdown-divider"></div>
+            <a className="dropdown-item" href="#">No Preference</a>
+          </div>
+        </div >
+      </>
+    );
+
+    let searchField = (
+      <div className="row py-3">
+        <div className="col-lg-12">
+          <div className="input-group">
+            <input
+              type="text"
+              className="form-control rounded-left border-right-0"
+              id="searchField"
+              placeholder={this.state.searchFieldValue}
+              onChange={this.onSearchFieldChange}>
+            </input>
+            <div className="input-group-append">
+              <button onClick={this.onSearch} className="btn btn-outline-dark rounded-right">search</button>
+            </div>
+          </div>
+        </div>
+        <div className="col-auto">
+          {filters}
         </div>
       </div>
     );
 
+
     return (
       <div>
-        <h1>HomePage</h1>
         {searchField}
-        <div className="row justify-content-center">
+        < div className="row py-3 justify-content-center" >
           <div className="col-lg-6 col-10">
             <FilterComponent imgSrc={require('../logos/brooklyn-college-logo.png')} onClick={() => this.onFilterClick(1)} />
           </div>
@@ -47,8 +87,8 @@ export default class HomePage extends Component {
           <div className="col-lg-6 col-10">
             <FilterComponent imgSrc={require('../logos/queens-college-logo.png')} onClick={() => this.onFilterClick(4)} />
           </div>
-        </div>
-      </div>
+        </div >
+      </div >
     );
   }
 }
