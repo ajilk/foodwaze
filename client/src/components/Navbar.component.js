@@ -6,10 +6,6 @@ import { Link } from 'react-router-dom'
 // -> signed in state (does not show signup/login buttons)
 // -> signed out state
 export default class NavbarComponent extends Component {
-  goHome = () => {
-    // TODO: navigate home
-  }
-
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light">
