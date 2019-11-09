@@ -3,7 +3,7 @@ import FilterComponent from '../components/Filter.component'
 
 export default class HomePage extends Component {
   state = {
-    searchFieldValue: 'Try Queens College',
+    searchFieldValue: '',
   }
 
   onSearchFieldChange = (e) => this.setState({ searchFieldValue: e.target.value });
@@ -17,6 +17,9 @@ export default class HomePage extends Component {
       case 3: location = 'Queens College'; break;
     }
     this.setState({ searchFieldValue: location });
+    this.props.history.push('/posts', {
+      location: location
+    });
   }
 
   render() {
@@ -65,7 +68,8 @@ export default class HomePage extends Component {
               type="text"
               className="form-control rounded-left border-right-0"
               id="searchField"
-              placeholder={this.state.searchFieldValue}
+              placeholder='Try Queens College'
+              value={this.state.searchFieldValue}
               onChange={this.onSearchFieldChange}>
             </input>
             <div className="input-group-append">
