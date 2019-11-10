@@ -10,7 +10,7 @@ export default class NavbarComponent extends Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-light">
         <Link to='/' className="navbar-brand">foodwaze</Link>
-        <div className="col">
+        <div className="col px-0">
           <div className="input-group">
             <Link to='/login' style={{ textDecoration: 'none' }} className="ml-auto input-group-append">
               <button className="btn btn-outline-dark border-right-0 rounded-left">login</button>
