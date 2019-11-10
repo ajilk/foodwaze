@@ -1,4 +1,4 @@
-## findfreefood
+## foodwaze
 
 to push to heroku  
 `git push heroku`
