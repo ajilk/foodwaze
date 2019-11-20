@@ -144,7 +144,7 @@ export default class HomePage extends Component {
     return (
       <div>
         {searchField}
-        <Form />
+
         <div className="row p-3">
           {presetLocations.map((location, index) => (
             <div className="col-lg-6 px-1">

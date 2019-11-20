@@ -4,15 +4,27 @@ export default class Form extends Component {
   state = {
     description: "",
     location: "",
-    image: ""
+    image: "",
+    filter: []
   };
 
-  Post = () =>
+  Post = () => {
     console.log(
-      `P: ${this.state.description} L: ${this.state.location} I: ${this.onImageChange}`
+      `Description: ${this.state.description} Location: ${this.state.location} Image: ${this.state.image} F: ${this.state.filter}`
     );
-  onDescriptionChange = e => this.setState({ post: e.target.value });
+  };
+
+  onDescriptionChange = e => this.setState({ description: e.target.value });
   onLocationChange = e => this.setState({ location: e.target.value });
+  onFilterChange = e => {
+    console.dir(e.target.value);
+    this.setState({
+      filter:
+        // e.target.value
+        [...this.state.filter, e.target.value]
+    });
+    console.log(this.state.filter);
+  };
   //image change
   onImageChange = e => {
     let files = e.target.files;
@@ -21,6 +33,7 @@ export default class Form extends Component {
     reader.readAsDataURL(files[0]);
 
     reader.onload = e => {
+      this.setState({ image: e.target.result });
       console.log("img data:", e.target.result);
     };
   };
@@ -39,16 +52,17 @@ export default class Form extends Component {
               <div className="form-group">
                 <input
                   type="Description"
-                  name="foodimage"
+                  name="Description"
                   className="form-control"
                   id="DescriptionInput"
                   aria-describedby="emailHelp"
                   placeholder="Description"
-                  onChange={this.onPostChange}
+                  onChange={this.onDescriptionChange}
                 />
               </div>
             </div>
           </div>
+          {/* Location start */}
           <div className="row">
             <div className="col">
               <div className="form-group">
@@ -62,10 +76,41 @@ export default class Form extends Component {
               </div>
             </div>
           </div>
+          {/* Filter begin */}
+          <div className="row">
+            <div className="col">
+              <div className="form-group">
+                <select
+                  type="filter"
+                  className="form-control"
+                  id="Filter"
+                  placeholder="What kind of food are you interested in"
+                  multiple={true}
+                  // onClick={this.onFilterChange}
+                  filter={this.state.value}
+                >
+                  <option onClick={this.onFilterChange} value="grapefruit">
+                    Grapefruit
+                  </option>
+                  <option onClick={this.onFilterChange} value="lime">
+                    Lime
+                  </option>
+                  <option onClick={this.onFilterChange} value="coconut">
+                    Coconut
+                  </option>
+                  <option onClick={this.onFilterChange} value="mango">
+                    Mango
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          {/* Filter end */}
           <div className="row">
             <div className="col">
               <div className="form-group">
                 <input
+                  accept="image/*"
                   type="file"
                   className="form-control"
                   id="fileInput"
