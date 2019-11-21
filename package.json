@@ -6,7 +6,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "passport": "^0.4.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "pg": "^7.13.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -16,12 +17,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ajilk/findfreefood.git"
+    "url": "git+https://github.com/ajilk/foodwaze.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ajilk/findfreefood/issues"
+    "url": "https://github.com/ajilk/foodwaze/issues"
   },
-  "homepage": "https://github.com/ajilk/findfreefood#readme"
+  "homepage": "https://github.com/ajilk/foodwaze#readme"
 }
