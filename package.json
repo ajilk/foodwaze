@@ -6,6 +6,7 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "express": "^4.17.1",
+    "express-session": "^1.17.0",
     "passport": "^0.4.0",
     "path": "^0.12.7",
     "pg": "^7.13.0"
@@ -13,7 +14,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
+    "start": "node api/app.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
