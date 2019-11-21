@@ -34,7 +34,7 @@ export default class Form extends Component {
 
     reader.onload = e => {
       this.setState({ image: e.target.result });
-      console.log("img data:", e.target.result);
+      //console.log("img data:", e.target.result);
     };
   };
   //end of image change
