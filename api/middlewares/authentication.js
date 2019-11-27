@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
@@ -15,7 +15,7 @@ passport.use(
   }, (email, password, done) => {
     User.findOne({ where: { email } })
       .then(user => {
-        if (!user) => {
+        if (!user) {
           console.log('\n\nLogin Failed: User does not exist\n\n');
           return done(null, false, { message: 'Login Failed' });
         }
@@ -24,12 +24,12 @@ passport.use(
           return done(null, false, { message: 'Login Failed' });
         }
         console.log('\n\nSuccessful Login\n\n');
-        return done(null, false, { message: 'Login Successful' });
-      }).catch(err => return done(err));
+        return done(null, user, { message: 'Login Successful' });
+      }).catch(err => done(err));
   })
 );
 
-passport.serializeUser((user, done) => done(null, user.id);
+passport.serializeUser((user, done) => done(null, user.id));
 passport.deserializeUser((id, done) => {
   User.findByPk(id)
     .then(user => {
@@ -39,8 +39,10 @@ passport.deserializeUser((id, done) => {
       }
       done(null, user);
       return;
-    }).catch(err => done(err, null);
+    }).catch(err => done(err, null));
 });
 
 passport.isAuthenticated = () =>
   (req, res, next) => req.user ? next() : res.sendStatus(401);
+
+module.exports = passport;

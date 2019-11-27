@@ -2,10 +2,12 @@ const path = require('path');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const db = require('./models');
+const passport = require('./middlewares/authentication');
 const express = require('express');
 const session = require('express-session');
 const PORT = process.env.PORT || 8000;
 const app = express()
+
 
 // Allows parsing of 'application/json' content in http requests
 app.use(bodyParser.json());
@@ -16,7 +18,7 @@ app.use(morgan(logFormat));
 
 // Setup passport and session cookies
 app.use(session({
-  secret: node.env.SESSION_SECRET,
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }));

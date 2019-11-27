@@ -2,7 +2,7 @@ const router = require('express').Router();
 const passport = require('../middlewares/authentication');
 const { User } = require('../models');
 
-router.post('/signup', () => {
+router.post('/signup', (req, res) => {
   console.log("POST body: ", req.body);
   User.create({
     firstName: req.body.firstName,
@@ -14,13 +14,15 @@ router.post('/signup', () => {
       req.login(user, () => res.status(201).json(user));
     })
     .catch(err => {
-      req.status(400).json({ message: 'Signup Failed', err });
+      res.status(400).json({ message: 'Signup Failed', err });
     });
 });
 
-router.post('/login', passport.authenticate('local'), (req, res) => {
-  res.json(req.user)
-});
+router.post('/login',
+  passport.authenticate('local'),
+  (req, res) => {
+    res.json(req.user);
+  });
 
 router.post('/logout', (req, res) => {
   req.logout();

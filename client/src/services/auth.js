@@ -1,4 +1,4 @@
-export default const auth = {
+const auth = {
   isAuthenticated: false,
   authenticate(email, password) {
     return fetch('/api/auth/login', {
@@ -11,9 +11,22 @@ export default const auth = {
     }).then(body => {
       this.isAuthenticated = true;
       return body;
-    })
+    });
   },
-  signOut(callback) {
+  signUp(firstName, lastName, email, password) {
+    return fetch('/api/auth/signup', {
+      method: 'POST',
+      body: JSON.stringify({ firstName, lastName, email, password }),
+      headers: { 'Content-Type': 'application/json' },
+    }).then(response => {
+      if (!response.ok) throw new Error('Signup Failed');
+      return response.json();
+    }).then(body => {
+      this.isAuthenticated = true;
+      return body;
+    });
+  },
+  signout(callback) {
     return fetch('/api/auth/logout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -26,3 +39,5 @@ export default const auth = {
     });
   }
 }
+
+export default auth;

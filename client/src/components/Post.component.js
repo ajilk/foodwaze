@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Card } from 'react-bootstrap';
 
 
-export default class Post extends Component {
+export default class PostComponent extends Component {
   render() {
     return (
       <div>
@@ -22,4 +22,3 @@ export default class Post extends Component {
     )
   }
 }
-

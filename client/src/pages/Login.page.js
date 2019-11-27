@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+
 import auth from '../services/auth';
 
 export default class LoginPage extends Component {
@@ -10,7 +12,7 @@ export default class LoginPage extends Component {
   }
 
   onFieldChange = (name) => {
-    return (event) => this.setState([name]: event.target.value)
+    return (event) => this.setState({ [name]: event.target.value })
   }
 
   signIn = (event) => {
@@ -18,7 +20,8 @@ export default class LoginPage extends Component {
     let { email, password } = this.state;
     auth.authenticate(email, password)
       .then(user => {
-        this.setState(redirectToReferrer: true);
+        console.log('yayy');
+        this.setState({ redirectToReferrer: true });
       }).catch(err => {
         this.setState({ failed: true });
       });
@@ -30,18 +33,18 @@ export default class LoginPage extends Component {
 
     if (redirectToReferrer) return <Redirect to={from} />;
 
-    let err = failed
+    let error = failed
       ? <div className="alert alert-danger" role="alert">Login Failed</div>
       : "";
 
-    emailInput = <input
+    const emailInput = <input
       type="email"
       className="form-control"
       id="emailInput"
       placeholder="email"
       onChange={this.onFieldChange('email')}
     />
-    passwordInput = <input
+    const passwordInput = <input
       type="password"
       className="form-control"
       id="passwordInput"
@@ -61,12 +64,12 @@ export default class LoginPage extends Component {
             </div>
             <div className="row">
               <div className="col">
-                <div className="form-group">{this.emailInput}</div>
+                <div className="form-group">{emailInput}</div>
               </div>
             </div>
             <div className="row">
               <div className="col">
-                <div className="form-group">{this.passwordInput}</div>
+                <div className="form-group">{passwordInput}</div>
               </div>
             </div>
             <div className="row">
