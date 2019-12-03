@@ -1,70 +1,110 @@
 import React, { Component } from 'react'
+import auth from '../services/auth';
 
 export default class SignupPage extends Component {
   state = {
-    email: '',
     firstName: '',
     lastName: '',
+    email: '',
     password: '',
-    verifyPassword: '', 
+    verifyPassword: '',
   }
 
-  signUp = () => console.log(`U: ${this.state.email} P: ${this.state.password}`);
-  onPasswordChange = (e) => this.setState({ password: e.target.value });
-  onVerifyPasswordChange = (e) => this.setState({ verifyPassword: e.target.value });
-  onEmailChange = (e) => this.setState({ email: e.target.value });
-  onFirstNameChange = (e) => this.setState({ firstName: e.target.value });
-  onLastNameChange = (e) => this.setState({ lastName: e.target.value });
+  onFieldChange = (name) => {
+    return (event) => this.setState({ [name]: event.target.value })
+  }
+
+  signUp = (event) => {
+    event.preventDefault();
+    let { firstName, lastName, email, password } = this.state;
+    auth.signUp(firstName, lastName, email, password)
+      .then(user => {
+        this.setState({ redirectToReferrer: true });
+      }).catch(err => {
+        this.setState({ failed: true });
+      });
+  }
 
   render() {
+    const emailInput = <input
+      type="email"
+      className="form-control"
+      id="emailInput"
+      placeholder="email"
+      onChange={this.onFieldChange('email')}
+    />
+    const passwordInput = <input
+      type="password"
+      className="form-control"
+      id="passwordInput"
+      placeholder="password"
+      onChange={this.onFieldChange('password')}
+    />
+    const verifyPasswordInput = <input
+      type="password"
+      className="form-control"
+      id="verifyPasswordInput"
+      placeholder="verify password"
+      onChange={this.onFieldChange('verifyPassword')}
+    />
+    const firstName = <input
+      type="text"
+      className="form-control"
+      id="firstNameInput"
+      placeholder="firstname"
+      onChange={this.onFieldChange('firstName')}
+    />
+    const lastName = <input
+      type="text"
+      className="form-control"
+      id="lastNameInput"
+      placeholder="lastname"
+      onChange={this.onFieldChange('lastName')}
+    />
+
     return (
-      <div className="row py-5 justify-content-center">
-        <div className="col-lg-4 col-md-6 col-12">
-          <div className="row">
-            <div className="col">
-              <h2>hello</h2>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <div className="form-group">
-                <input type="email" className="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="email" onChange={this.onEmailChange} />
+      <form onSubmit={this.signUp}>
+        <div className="row py-5 justify-content-center" >
+          <div className="col-lg-4 col-md-6 col-12">
+            <div className="row">
+              <div className="col">
+                <h2>hello</h2>
               </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col pr-0">
-              <div className="form-group">
-                <input type="text" className="form-control" id="firstNameInput" aria-describedby="firstNameHelp" placeholder="firstname" onChange={this.onFirstNameChange} />
+            <div className="row">
+              <div className="col pr-0">
+                <div className="form-group">{firstName}</div>
+              </div>
+              <div className="col">
+                <div className="form-group">{lastName}</div>
               </div>
             </div>
-            <div className="col">
-              <div className="form-group">
-                <input type="text" className="form-control" id="lastNameInput" aria-describedby="lastNameHelp" placeholder="lastname" onChange={this.onLastNameChange} />
+            <div className="row">
+              <div className="col">
+                <div className="form-group">{emailInput}</div>
               </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <div className="form-group">
-                <input type="password" className="form-control" id="passwordInput" placeholder="password" onChange={this.onPasswordChange} />
+            <div className="row">
+              <div className="col">
+                <div className="form-group">{passwordInput}</div>
               </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <div className="form-group">
-                <input type="password" className="form-control" id="verifyPasswordInput" placeholder="verify password" onChange={this.onVerifyPasswordChange} />
+            <div className="row">
+              <div className="col">
+                <div className="form-group">{verifyPasswordInput}</div>
               </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <button type="submit" className="btn btn-block btn-outline-secondary" onClick={this.signUp}>sign up</button>
+            <div className="row">
+              <div className="col">
+                <button
+                  type="submit"
+                  className="btn btn-block btn-outline-secondary"
+                >sign up</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </form>
     );
   }
 }
