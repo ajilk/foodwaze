@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Form from "../components/form";
+import Ren from "../components/RenderButton";
 
 export default class PostsPpage extends Component {
   render() {
@@ -9,7 +9,7 @@ export default class PostsPpage extends Component {
         <h1>
           Post Page for location: <b>{location}</b>
         </h1>
-        <Form />
+        <Ren />
       </div>
     );
   }

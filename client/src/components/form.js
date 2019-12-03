@@ -21,7 +21,7 @@ export default class Form extends Component {
     this.setState({
       filter:
         // e.target.value
-        [...this.state.filter, e.target.value]
+        [...this.state.filter, e.target.value] // changes the filter array 
     });
     console.log(this.state.filter);
   };
