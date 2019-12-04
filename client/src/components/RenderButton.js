@@ -9,9 +9,11 @@ export default class Rutton extends React.Component {
     return (
       <div>
         {this.state.answer === "yes" && <Form />}
-        <button onClick={this.handleSubmit} name="yes">
-          Create a post!
-        </button>
+        {this.state.answer === "yes" ? null : (
+          <button onClick={this.handleSubmit} name="yes">
+            Create a post!
+          </button>
+        )}
       </div>
     );
   }
