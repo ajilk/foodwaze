@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Ren from "../components/RenderButton";
 import Post from '../components/Post.component';
 import data from '../mocks/posts.json';
 import './Posts.page.css';
