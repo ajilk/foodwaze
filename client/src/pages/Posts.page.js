@@ -18,10 +18,15 @@ export default class PostsPage extends Component {
   render() {
     const { location } = this.props.location.state;
     return (
-      <div id="cards">
-        {/* { datafrom data base will filter the posts by location */}
-        {this.state.posts.filter(post => (post.college == location)).map(post => <Post key={post.id} post={post} />)}
-      </div>
+      <>
+        <div>
+          <Ren />
+        </div>
+        <div id="cards">
+          {/* { datafrom data base will filter the posts by location */}
+          {this.state.posts.filter(post => (post.college == location)).map(post => <Post key={post.id} post={post} />)}
+        </div>
+      </>
     );
   }
 }

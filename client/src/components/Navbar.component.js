@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import auth from '../services/auth';
 import AuthButton from './AuthButton';
+import brandLogo from '../media/brandLogo.png';
 
 export default class NavbarComponent extends Component {
 
@@ -17,10 +18,8 @@ export default class NavbarComponent extends Component {
 
     return (
       <nav className="navbar navbar-expand-lg navbar-light">
-        <a className="navbar-brand" href="#">
-          <img src="./public/brand.png" width="30" height="30" alt="" />
-        </a>
-        <Link to='/' className="navbar-brand">foodwaze</Link>
+        <Link to='/'><img className="" src={brandLogo} width="50" alt="" /></Link>
+        <Link to='/' className="pl-2 navbar-brand"><h3 className="mb-0 mt-2">foodwaze</h3></Link>
         <AuthButton />
       </nav>
     )
