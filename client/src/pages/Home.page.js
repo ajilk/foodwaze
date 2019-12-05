@@ -88,7 +88,7 @@ export default class HomePage extends Component {
 
     return (
       <div>
-        {auth.isAuthenticated ? searchField : null}
+        {searchField}
         <div className="row p-3">
           {presetLocations.map((location, index) =>
             <div className="col-lg-6 px-1">
