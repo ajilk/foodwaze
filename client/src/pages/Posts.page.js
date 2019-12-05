@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
-import Post from '../components/Post';
+import Post from '../components/Post.component';
 import data from '../mocks/posts.json';
 import './Posts.page.css';
 
-export default class PostsPpage extends Component {
+export default class PostsPage extends Component {
   state = {
     posts: []
   }
-  componentDidMount = async () => {
 
+  componentDidMount = async () => {
     // const data = await response.json()
     this.setState({ posts: data })
     console.log({ data })
   }
 
-export default class PostsPage extends Component {
   render() {
     const { location } = this.props.location.state;
     return (
