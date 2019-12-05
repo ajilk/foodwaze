@@ -17,7 +17,7 @@ export default class NavbarComponent extends Component {
     >sign out</button>
 
     return (
-      <nav className="navbar navbar-expand-lg navbar-light">
+      <nav className="navbar navbar-expand-lg navbar-light mb-3">
         <Link to='/'><img className="" src={brandLogo} width="50" alt="" /></Link>
         <Link to='/' className="pl-2 navbar-brand"><h3 className="mb-0 mt-2">foodwaze</h3></Link>
         <AuthButton />
