@@ -8,18 +8,20 @@ export default class PostsPpage extends Component {
     posts: []
   }
   componentDidMount = async () => {
-    
+
     // const data = await response.json()
-    this.setState({posts: data})
-    console.log({data})
+    this.setState({ posts: data })
+    console.log({ data })
   }
+
+export default class PostsPage extends Component {
   render() {
     const { location } = this.props.location.state;
     return (
-    <div id="cards">
-    {/* { datafrom data base will filter the posts by location */}
-    {this.state.posts.filter(post => (post.college == location)).map(post => <Post key={post.id} post={post} />)}
-    </div>
-    )
+      <div id="cards">
+        {/* { datafrom data base will filter the posts by location */}
+        {this.state.posts.filter(post => (post.college == location)).map(post => <Post key={post.id} post={post} />)}
+      </div>
+    );
   }
 }

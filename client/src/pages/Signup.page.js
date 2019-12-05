@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import { withRouter, Redirect } from 'react-router-dom';
 import auth from '../services/auth';
 
 export default class SignupPage extends Component {
   state = {
+    redirectToReferrer: false,
     firstName: '',
     lastName: '',
     email: '',
@@ -26,6 +28,10 @@ export default class SignupPage extends Component {
   }
 
   render() {
+    const { from } = this.props.location.state || { from: { pathname: '/' } };
+    const { redirectToReferrer } = this.state;
+    if (redirectToReferrer) return <Redirect to={from} />
+
     const emailInput = <input
       type="email"
       className="form-control"
