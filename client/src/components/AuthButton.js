@@ -1,26 +1,15 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import auth from '../services/auth';
+import ProfileButton from './ProfileButton';
 
 class AuthButton extends Component {
-  componentDidMount() {
-    fetch('/api/auth/user', {
-      credentials: 'include',
-      method: 'GET',
-    }).then(response => {
-      console.log(response)
-      response.json().then(value => { this.setState({ user: value }) })
-    });
-  }
-
-  state = {
-    user: {},
+  signout = () => {
+    this.setState({ user: {} })
+    auth.signout().then(() => this.props.history.push('/'));
   }
 
   render() {
-    const { history } = this.props;
-    const signout = () => auth.signout().then(() => history.push('/'));
-
     if (!auth.isAuthenticated) {
       return (
         <div className="col px-0">
@@ -38,18 +27,9 @@ class AuthButton extends Component {
 
     return (
       <div className='input-group'>
-        <div className="dropdown ml-auto input-group-append">
-          <button className='btn btn-outline-light dropdown-toggle border-right-0 rounded-left' href='#' data-toggle='dropdown'>
-            {this.state.user['firstName']} {this.state.user['lastName']}
-          </button>
-          <div className='dropdown-menu'>
-            <Link to='/profile' className='dropdown-item' style={{ textDecoration: 'none' }}>
-              account
-            </Link>
-          </div>
-        </div>
+        <ProfileButton />
         <Link to='/login' style={{ textDecoration: 'none' }} className="input-group-append">
-          <button className="btn btn-outline-light rounded-right" onClick={signout}>sign out</button>
+          <button className="btn btn-outline-light rounded-right" onClick={this.signout}>sign out</button>
         </Link>
       </div >
     );
