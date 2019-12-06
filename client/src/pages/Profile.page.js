@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
+import auth from '../services/auth';
 
 export default class ProfilePage extends Component {
-  componentDidMount() {
-    fetch('/api/auth/user', {
-      method: 'GET',
-    }).then(response => {
-      response.json().then(value => { this.setState({ user: value }) })
-    });
-  }
-
   state = {
     user: {},
+  }
+
+  componentDidMount() {
+    auth.getUser((user) => {
+      this.setState({ user: user });
+    })
   }
 
   render() {

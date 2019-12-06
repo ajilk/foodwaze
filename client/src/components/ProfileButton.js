@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import auth from '../services/auth';
 import { Link, withRouter } from 'react-router-dom';
 
 class ProfileButton extends Component {
@@ -7,14 +8,9 @@ class ProfileButton extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/auth/user', {
-      credentials: 'include',
-      method: 'GET',
-    }).then(response => {
-      console.log(response)
-      response.json().then(value => { this.setState({ user: value }) })
-    });
-    console.log('hello???');
+    auth.getUser((user) => {
+      this.setState({ user: user });
+    })
   }
 
   render() {

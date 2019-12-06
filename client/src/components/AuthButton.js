@@ -5,7 +5,6 @@ import ProfileButton from './ProfileButton';
 
 class AuthButton extends Component {
   signout = () => {
-    this.setState({ user: {} })
     auth.signout().then(() => this.props.history.push('/'));
   }
 
@@ -26,11 +25,13 @@ class AuthButton extends Component {
     }
 
     return (
-      <div className='input-group'>
-        <ProfileButton />
-        <Link to='/login' style={{ textDecoration: 'none' }} className="input-group-append">
-          <button className="btn btn-outline-light rounded-right" onClick={this.signout}>sign out</button>
-        </Link>
+      <div className="col px-0">
+        <div className='input-group'>
+          <ProfileButton />
+          <Link to='/login' style={{ textDecoration: 'none' }} className="input-group-append">
+            <button className="btn btn-outline-light rounded-right" onClick={this.signout}>sign out</button>
+          </Link>
+        </div >
       </div >
     );
   }

@@ -38,6 +38,13 @@ const auth = {
       return body;
     });
   },
+  getUser(callback) {
+    fetch('/api/auth/user', {
+      credentials: 'include',
+      method: 'GET',
+    }).then(response => response.json()
+    ).then(body => callback(body))
+  }
 }
 
 export default auth;
