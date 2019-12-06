@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import FilterComponent from '../components/Filter.component'
 import auth from '../services/auth';
-import Form from "../components/form";
 
 export default class HomePage extends Component {
   state = {

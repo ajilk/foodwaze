@@ -3,6 +3,7 @@ import HomePage from "./pages/Home.page";
 import LoginPage from "./pages/Login.page";
 import SignupPage from "./pages/Signup.page";
 import PostsPage from "./pages/Posts.page";
+import PostPage from "./pages/Post.page";
 import ProfilePage from "./pages/Profile.page";
 import NavbarComponent from "./components/Navbar.component";
 import PrivateRoute from './components/PrivateRoute';
@@ -19,6 +20,7 @@ class App extends Component {
           <Route path="/signup" component={SignupPage} />
           <Route path="/posts" component={PostsPage} />
           <PrivateRoute path="/profile" component={ProfilePage} />
+          <PrivateRoute path="/post" component={PostPage} />
         </div>
       </Router>
     );

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class Form extends Component {
+class PostForm extends Component {
   state = {
     description: "",
     location: "",
@@ -136,3 +136,4 @@ export default class Form extends Component {
     );
   }
 }
+export default PostForm

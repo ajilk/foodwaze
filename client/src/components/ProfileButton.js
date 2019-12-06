@@ -20,9 +20,8 @@ class ProfileButton extends Component {
           {this.state.user['firstName']} {this.state.user['lastName']}
         </button>
         <div className='dropdown-menu'>
-          <Link to='/profile' className='dropdown-item' style={{ textDecoration: 'none' }}>
-            account
-            </Link>
+          <Link to='/profile' className='dropdown-item' style={{ textDecoration: 'none' }}>account</Link>
+          <Link to='/post' className='dropdown-item' style={{ textDecoration: 'none' }}>post</Link>
         </div>
       </div>
     )

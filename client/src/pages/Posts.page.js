@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Ren from "../components/RenderButton";
 import Post from '../components/Post.component';
 import data from '../mocks/posts.json';
 import './Posts.page.css';
@@ -17,16 +16,12 @@ export default class PostsPage extends Component {
 
   render() {
     const { location } = this.props.location.state;
+    console.log(this.props.location)
     return (
-      <>
-        <div>
-          <Ren />
-        </div>
-        <div id="cards">
-          {/* { datafrom data base will filter the posts by location */}
-          {this.state.posts.filter(post => (post.college == location)).map(post => <Post key={post.id} post={post} />)}
-        </div>
-      </>
+      <div id="cards">
+        {/* { datafrom data base will filter the posts by location */}
+        {this.state.posts.filter(post => (post.college == location)).map(post => <Post key={post.id} post={post} />)}
+      </div>
     );
   }
 }
