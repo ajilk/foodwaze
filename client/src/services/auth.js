@@ -37,7 +37,7 @@ const auth = {
       this.isAuthenticated = false;
       return body;
     });
-  }
+  },
 }
 
 export default auth;

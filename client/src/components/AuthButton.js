@@ -1,36 +1,57 @@
-import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
-
+import React, { Component } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import auth from '../services/auth';
 
-const AuthButton = withRouter(({ history }) => {
-  if (!auth.isAuthenticated) {
-    return (
-      <div className="col px-0">
-        <div className="input-group">
-          <Link to='/login' style={{ textDecoration: 'none' }} className="input-group-append ml-auto">
-            <button className="btn btn-outline-dark border-right-0 rounded-left">login</button>
-          </Link>
-          <Link to='/signup' style={{ textDecoration: 'none' }} className="input-group-append">
-            <button className="btn btn-outline-dark rounded-right">signup</button>
-          </Link>
+class AuthButton extends Component {
+  state = {
+    user: {},
+  }
+
+  componentDidMount() {
+    fetch('/api/auth/user', {
+      method: 'GET',
+    }).then(response => {
+      response.json().then(value => { this.setState({ user: value }) })
+    });
+  }
+
+  render() {
+    const { history } = this.props;
+    const signout = () => auth.signout().then(() => history.push('/'));
+
+    if (!auth.isAuthenticated) {
+      return (
+        <div className="col px-0">
+          <div className="input-group">
+            <Link to='/login' style={{ textDecoration: 'none' }} className="input-group-append ml-auto">
+              <button className="btn btn-outline-light border-right-0 rounded-left">login</button>
+            </Link>
+            <Link to='/signup' style={{ textDecoration: 'none' }} className="input-group-append">
+              <button className="btn btn-outline-light rounded-right">signup</button>
+            </Link>
+          </div>
         </div>
-      </div>
+      );
+    }
+
+    return (
+      <div className='input-group'>
+        <div className="dropdown ml-auto input-group-append">
+          <button className='btn btn-outline-light dropdown-toggle border-right-0 rounded-left' href='#' data-toggle='dropdown'>
+            {this.state.user['firstName']} {this.state.user['lastName']}
+          </button>
+          <div className='dropdown-menu'>
+            <Link to='/profile' className='dropdown-item' style={{ textDecoration: 'none' }}>
+              account
+            </Link>
+          </div>
+        </div>
+        <Link to='/login' style={{ textDecoration: 'none' }} className="input-group-append">
+          <button className="btn btn-outline-light rounded-right" onClick={signout}>sign out</button>
+        </Link>
+      </div >
     );
   }
+}
 
-
-  const signout = () => {
-    auth.signout().then(() => history.push('/'));
-  }
-
-  return (
-    <div className="input-group">
-      <Link to='/login' style={{ textDecoration: 'none' }} className="ml-auto input-group-append">
-        <button className="btn btn-outline-dark rounded-left" onClick={signout}>sign out</button>
-      </Link>
-    </div>
-  );
-});
-
-export default AuthButton;
+export default withRouter(AuthButton);
