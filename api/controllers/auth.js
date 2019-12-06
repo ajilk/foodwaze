@@ -29,12 +29,9 @@ router.post('/logout', (req, res) => {
   res.status(200).json({ message: 'Logout Successful' });
 });
 
-router.get('/loggedin', (req, res) => {
-  if (req.user) res.json({ 'loggedin': 'true' });
-});
-
 router.get('/user', (req, res) => {
-  res.json(req.user);
+  if (req.user) res.json(req.user);
+  else res.json({});
 });
 
 module.exports = router;

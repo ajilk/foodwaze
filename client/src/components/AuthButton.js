@@ -3,16 +3,18 @@ import { Link, withRouter } from 'react-router-dom';
 import auth from '../services/auth';
 
 class AuthButton extends Component {
-  state = {
-    user: {},
-  }
-
   componentDidMount() {
     fetch('/api/auth/user', {
+      credentials: 'include',
       method: 'GET',
     }).then(response => {
+      console.log(response)
       response.json().then(value => { this.setState({ user: value }) })
     });
+  }
+
+  state = {
+    user: {},
   }
 
   render() {

@@ -5,8 +5,8 @@ import SignupPage from "./pages/Signup.page";
 import PostsPage from "./pages/Posts.page";
 import ProfilePage from "./pages/Profile.page";
 import NavbarComponent from "./components/Navbar.component";
+import PrivateRoute from './components/PrivateRoute';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Form from "./components/form";
 
 class App extends Component {
   render() {
@@ -18,7 +18,7 @@ class App extends Component {
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignupPage} />
           <Route path="/posts" component={PostsPage} />
-          <Route path="/profile" component={ProfilePage} />
+          <PrivateRoute path="/profile" component={ProfilePage} />
         </div>
       </Router>
     );
