@@ -21,16 +21,14 @@ const PhotoDrop = () => {
   const isTooLarge = rejectedFiles.length > 0 && rejectedFiles[0].size > maxSize;
 
   return (
-    <div className="container text-center mt-5">
-      <div className="card">
-        <div className="card-body">
-          <div {...getRootProps()}>
-            <input {...getInputProps()} />
-            {!isDragActive && <><MdAdd /> Upload Photo</>}
-            {isDragActive && !isDragReject && 'Drop'}
-            {isDragReject && 'Inavlid Type'}
-            {isTooLarge && <div className="text-danger">Photo Too Large</div>}
-          </div>
+    <div className="card">
+      <div className="card-body">
+        <div {...getRootProps()}>
+          <input {...getInputProps()} />
+          {!isDragActive && <><MdAdd /> Upload Photo</>}
+          {isDragActive && !isDragReject && 'Drop'}
+          {isDragReject && 'Inavlid Type'}
+          {isTooLarge && <div className="text-danger">Photo Too Large</div>}
         </div>
       </div>
     </div>

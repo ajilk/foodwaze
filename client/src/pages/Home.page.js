@@ -2,11 +2,22 @@ import React, { Component } from 'react'
 import FilterComponent from '../components/Filter.component'
 import auth from '../services/auth';
 import PhotoDrop from '../components/PhotoDrop.component';
+import PostComponent from '../components/Post.component';
+import PostForm from '../components/PostForm.component';
 
 export default class HomePage extends Component {
   state = {
-    searchFieldValue: ""
+    searchFieldValue: "",
+    posts: [],
   };
+
+  async componentDidMount() {
+    await fetch('/api/post/all', {
+      method: 'GET',
+    }).then(response => response.json()
+    ).then(body => this.setState({ posts: body }));
+    console.log(this.state.posts)
+  }
 
   onSearchFieldChange = e =>
     this.setState({ searchFieldValue: e.target.value });
@@ -145,7 +156,8 @@ export default class HomePage extends Component {
     return (
       <div>
         {searchField}
-        <div className="row p-3">
+        {this.state.posts.map(post => <PostComponent description={post.description} location={post.location} title={post.title} />)}
+        {/* <div className="row p-3">
           {presetLocations.map((location, index) => (
             <div className="col-lg-6 px-1">
               <FilterComponent
@@ -154,7 +166,7 @@ export default class HomePage extends Component {
               />
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     );
   }
