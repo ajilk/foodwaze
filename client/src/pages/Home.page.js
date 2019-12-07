@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import FilterComponent from '../components/Filter.component'
 import auth from '../services/auth';
+import PhotoDrop from '../components/PhotoDrop.component';
 
 export default class HomePage extends Component {
   state = {
@@ -144,7 +145,6 @@ export default class HomePage extends Component {
     return (
       <div>
         {searchField}
-
         <div className="row p-3">
           {presetLocations.map((location, index) => (
             <div className="col-lg-6 px-1">

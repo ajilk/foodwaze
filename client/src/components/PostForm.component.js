@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PhotoDrop from "./PhotoDrop.component";
 
 class PostForm extends Component {
   state = {
@@ -41,6 +42,9 @@ class PostForm extends Component {
   render() {
     return (
       <div className="row py-5 justify-content-center">
+        <div className="col-lg-4 col-md-6 col-12">
+          <PhotoDrop />
+        </div>
         <div className="col-lg-4 col-md-6 col-12">
           <div className="row">
             <div className="col">
