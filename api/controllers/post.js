@@ -9,6 +9,7 @@ router.post('/create', (req, res) => {
       location: req.body.location,
       description: req.body.description,
     }).then(post => {
+      req.user.addPosts(post)
       res.json({ postID: post.get('id') })
     });
   }
@@ -17,7 +18,7 @@ router.post('/create', (req, res) => {
 router.get('/all', async (req, res) => {
   let posts = await Post.findAll({
     attributes: ['id', 'title', 'location', 'description', 'createdAt', 'updatedAt'],
-    order: [['createdAt', 'DESC']], 
+    order: [['createdAt', 'DESC']],
     limit: 20,
     subQuery: false,
   })
