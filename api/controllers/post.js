@@ -17,6 +17,11 @@ router.post('/create', (req, res) => {
 
 router.get('/all', async (req, res) => {
   let posts = await Post.findAll({
+    include: [{
+      model: User,
+      as: 'owner',
+      attributes: ['firstName', 'lastName'],
+    }],
     attributes: ['id', 'title', 'location', 'description', 'createdAt', 'updatedAt'],
     order: [['createdAt', 'DESC']],
     limit: 20,
