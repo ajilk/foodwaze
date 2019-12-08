@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import FilterComponent from '../components/Filter.component'
 import auth from '../services/auth';
 import PhotoDrop from '../components/PhotoDrop.component';
 import PostComponent from '../components/Post.component';

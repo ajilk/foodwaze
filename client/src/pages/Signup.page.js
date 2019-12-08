@@ -69,48 +69,25 @@ export default class SignupPage extends Component {
     />
 
     return (
-      <form onSubmit={this.signUp}>
-        <div className="row py-5 justify-content-center" >
-          <div className="col-lg-4 col-md-6 col-12">
-            <div className="row">
-              <div className="col">
-                <h2>hello</h2>
-              </div>
+      <div className="row justify-content-center">
+        <div className="col-lg-4 col-md-6 col-12">
+          <form onSubmit={this.signUp}>
+            <div className="form-group"> <h2>hello</h2> </div>
+            <div className="form-row">
+              <div className="form-group col-6">{firstName}</div>
+              <div className="form-group col-6">{lastName}</div>
             </div>
-            <div className="row">
-              <div className="col pr-0">
-                <div className="form-group">{firstName}</div>
-              </div>
-              <div className="col">
-                <div className="form-group">{lastName}</div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                <div className="form-group">{emailInput}</div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                <div className="form-group">{passwordInput}</div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                <div className="form-group">{verifyPasswordInput}</div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                <button
-                  type="submit"
-                  className="btn btn-block btn-outline-secondary"
-                >sign up</button>
-              </div>
-            </div>
-          </div>
+            <div className="form-group">{passwordInput}</div>
+            <div className="form-group">{emailInput}</div>
+            <div className="form-group">{passwordInput}</div>
+            <div className="form-group">{verifyPasswordInput}</div>
+            <button
+              type="submit"
+              className="btn btn-block btn-outline-secondary"
+            >sign up</button>
+          </form>
         </div>
-      </form>
+      </div>
     );
   }
 }

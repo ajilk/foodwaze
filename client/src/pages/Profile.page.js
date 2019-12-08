@@ -7,9 +7,7 @@ export default class ProfilePage extends Component {
   }
 
   componentDidMount() {
-    auth.getUser((user) => {
-      this.setState({ user: user });
-    })
+    auth.getUser((user) => this.setState({ user: user }));
   }
 
   render() {
