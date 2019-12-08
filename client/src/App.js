@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <Router>
         <NavbarComponent />
-        <div className="container text-center">
+        <div className="container">
           <Route exact path="/" component={HomePage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignupPage} />

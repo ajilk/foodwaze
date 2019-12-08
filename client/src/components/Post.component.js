@@ -1,34 +1,27 @@
 import React, { Component } from 'react';
-import { Image } from 'cloudinary-react';
-import { Card } from 'react-bootstrap';
+import useHover from './useHover';
 
+const IMAGE_URL = 'https://res.cloudinary.com/hsr6kguq8/image/upload/';
 
-export default class PostComponent extends Component {
-  render() {
-    const { post } = this.props;
-    console.log(post.images[0]);
-    return (
-      <div>
-        <Card style={{ width: '30rem', borderRadius: '20px' }}>
-          <Card.Body>
-            <Card.Title>
-              {post.title}
-              {/* <strong>{this.props.post.foodtype}@</strong> */}
-            </Card.Title>
-            <Card.Text>
-              {post.description} - {post.location}
-              {/* <Card.Img variant="top" src={this.props.post.image} /> */}
-            </Card.Text>
-            <Card.Text>
-              by {post.owner.firstName} {post.owner.lastName} at {post.createdAt}
-            </Card.Text>
-            {post.images[0]
-              ? <Image cloud_name="hsr6kguq8" publicId={post.images[0]} width="200" height="150" crop="scale" secure="true"></Image>
-              : null
-            }
-          </Card.Body>
-        </Card>
-      </div >
-    )
-  }
+function PostComponent(props) {
+  const { post } = props;
+  const [hoverRef, isHovered] = useHover();
+  return (
+    <div ref={hoverRef} className={`card my-2 ${isHovered ? "shadow-lg" : ""}`}>
+      <div className="card-img-top">{
+        !post.images[0]
+          ? null
+          : <img src={IMAGE_URL + post.images[0]} width="100%" />
+      }</div>
+      <div className="card-body p-3">
+        <h5 className="card-title font-weight-bold mb-0">{post.title}</h5>
+        <div className="card-text font-weight-light"><i>{post.location}</i></div>
+        <div className="card-text pb-4">{post.description}</div>
+        <div className="card-text text-right"> <small class="text-muted">{post.owner['firstName']} {post.owner['lastName']}</small></div>
+        <p class="card-text text-right"><small class="text-muted">{post.createdAt}</small></p>
+      </div>
+    </div>
+  );
 }
+
+export default PostComponent;
