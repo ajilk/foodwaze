@@ -77,7 +77,6 @@ export default class SignupPage extends Component {
               <div className="form-group col-6">{firstName}</div>
               <div className="form-group col-6">{lastName}</div>
             </div>
-            <div className="form-group">{passwordInput}</div>
             <div className="form-group">{emailInput}</div>
             <div className="form-group">{passwordInput}</div>
             <div className="form-group">{verifyPasswordInput}</div>

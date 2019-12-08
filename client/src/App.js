@@ -35,8 +35,8 @@ class App extends Component {
           <Route exact path="/" component={HomePage} />
           <Route path="/login" render={props => <LoginPage onSignIn={this.onSignIn} {...props} />} />
           <Route path="/signup" component={SignupPage} />
-          <PrivateRoute path="/profile" component={ProfilePage} />
-          <PrivateRoute path="/post" component={PostPage} />
+          <PrivateRoute authenticated={this.state.authenticated} path="/profile" component={ProfilePage} />
+          <PrivateRoute authenticated={this.state.authenticated} path="/post" component={PostPage} />
         </div>
       </Router>
     );
