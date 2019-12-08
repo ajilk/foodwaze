@@ -42,4 +42,23 @@ router.get('/all', async (req, res) => {
   res.status(200).json(posts);
 })
 
+router.get('/all/user', async (req, res) => {
+  let posts = await Post.findAll({
+    include: [{
+      model: User,
+      as: 'owner',
+      attributes: ['firstName', 'lastName'],
+      where: { id: req.user['id'] }
+
+    }],
+    attributes: ['title', 'location', 'description', 'images', 'createdAt'],
+    order: [['createdAt', 'DESC']],
+    limit: 20,
+    subQuery: false,
+  })
+  res.status(200).json(posts);
+})
+
+
+
 module.exports = router;
