@@ -2,10 +2,10 @@ import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { MdAdd } from 'react-icons/md';
 
-const PhotoDrop = () => {
+const PhotoDrop = (props) => {
   const maxSize = 5242880;
   const onDrop = useCallback(acceptedFiles => {
-    console.log(acceptedFiles)
+    props.onDrop(acceptedFiles);
   }, []);
 
   const {

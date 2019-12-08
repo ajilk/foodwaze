@@ -7,28 +7,34 @@ class PostForm extends Component {
     title: "",
     description: "",
     location: "",
-    // image: {},
+    image: {},
   };
 
   onFieldChange = (name) => {
     return (event) => this.setState({ [name]: event.target.value })
   }
 
-  onPost = () => {
+  onPhotoUpload = (acceptedFiles) => {
+    this.setState({ image: acceptedFiles[0] });
+  }
+
+  onPost = e => {
+    e.preventDefault()
+    var formData = new FormData();
+    for (let name in this.state) {
+      formData.append(name, this.state[name]);
+    }
     fetch('/api/post/create', {
       method: 'POST',
-      body: JSON.stringify(this.state),
-      headers: { 'Content-Type': 'application/json' },
-    }).then(response => response.json()
-    ).then(body => {
-      console.log(body);
-      this.props.history.push('/');
-    });
+      body: formData
+    }).then(response => response.json())
+      .catch(err => console.log(err));
+    this.props.history.push('/');
   }
 
   render() {
     return (
-      <div>
+      <form onSubmit={this.onPost}>
         <div className="form-group"><h3>post</h3></div>
         <div className="form-group">
           <input
@@ -59,10 +65,10 @@ class PostForm extends Component {
           </textarea>
         </div>
         <div className="form-group">
-          <PhotoDrop />
+          <PhotoDrop onDrop={this.onPhotoUpload} />
         </div>
-        <button type="submit" className="btn btn btn-block btn-outline-primary" onClick={this.onPost}>post</button>
-      </div>
+        <button type="submit" className="btn btn btn-block btn-outline-primary">post</button>
+      </form>
     );
   }
 }

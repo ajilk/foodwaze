@@ -16,7 +16,6 @@ export default class HomePage extends Component {
       method: 'GET',
     }).then(response => response.json()
     ).then(body => this.setState({ posts: body }));
-    console.log(this.state.posts)
   }
 
   onSearchFieldChange = e =>
@@ -156,17 +155,13 @@ export default class HomePage extends Component {
     return (
       <div>
         {searchField}
-        {this.state.posts.map(post => <PostComponent description={post.description} location={post.location} title={post.title} />)}
-        {/* <div className="row p-3">
-          {presetLocations.map((location, index) => (
-            <div className="col-lg-6 px-1">
-              <FilterComponent
-                imgSrc={require(`../logos/${location}-logo.png`)}
-                onClick={() => this.filterLocation(index)}
-              />
+        <div className="row p-3">
+          {this.state.posts.map((post, i) =>
+            <div className="col-lg-6 py-2 px-1">
+              <PostComponent post={post} key={i} />
             </div>
-          ))}
-        </div> */}
+          )}
+        </div>
       </div>
     );
   }

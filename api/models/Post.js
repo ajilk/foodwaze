@@ -7,7 +7,9 @@ module.exports = (sequelize, DataTypes) => {
   Post.init({
     title: { type: DataTypes.STRING, allowNull: false },
     location: { type: DataTypes.STRING, allowNull: false },
-    description: { type: DataTypes.STRING, allowNull: false }
+    description: { type: DataTypes.STRING, allowNull: false },
+    images: { type: DataTypes.ARRAY(DataTypes.STRING) },
+
   }, { sequelize });
 
   Post.associate = (models) => {
