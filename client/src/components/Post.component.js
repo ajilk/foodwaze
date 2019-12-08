@@ -11,7 +11,7 @@ function PostComponent(props) {
       <div className="card-img-top">{
         !post.images[0]
           ? null
-          : <img src={IMAGE_URL + post.images[0]} width="100%" />
+          : <img className="rounded" src={IMAGE_URL + post.images[0]} width="100%" />
       }</div>
       <div className="card-body p-3">
         <h5 className="card-title font-weight-bold mb-0">{post.title}</h5>

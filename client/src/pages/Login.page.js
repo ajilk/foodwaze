@@ -54,34 +54,18 @@ export default class LoginPage extends Component {
     return (
       <form onSubmit={this.signIn}>
         {error}
-        <div className="row py-5 justify-content-center">
+        <div className="row justify-content-center">
           <div className="col-lg-4 col-md-6 col-12">
-            <div className="row">
-              <div className="col">
-                <h2>welcome back</h2>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                <div className="form-group">{emailInput}</div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                <div className="form-group">{passwordInput}</div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                <button
-                  type="submit"
-                  className="btn btn-block btn-outline-secondary"
-                >sign in</button>
-              </div>
-            </div>
+            <div className="form-group"><h2>welcome back</h2></div>
+            <div className="form-group">{emailInput}</div>
+            <div className="form-group">{passwordInput}</div>
+            <button
+              type="submit"
+              className="btn btn-block btn-outline-secondary"
+            >sign in</button>
           </div>
         </div>
-      </form>
+      </form >
     );
   }
 }
