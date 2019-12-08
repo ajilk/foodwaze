@@ -6,7 +6,7 @@ export default class PostPage extends Component {
   render() {
     return (
       <div className="row justify-content-center">
-        <div className="col-lg-6 col-md-8 col-12">
+        <div className="col-lg-4 col-md-6 col-12">
           <PostForm />
         </div>
       </div>

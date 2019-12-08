@@ -64,7 +64,7 @@ class PostForm extends Component {
           >
           </textarea>
         </div>
-        <div className="form-group">
+        <div className="form-group text-center">
           <PhotoDrop onDrop={this.onPhotoUpload} />
         </div>
         <button type="submit" className="btn btn btn-block btn-outline-primary">post</button>
