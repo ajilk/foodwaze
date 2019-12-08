@@ -21,6 +21,7 @@ export default class LoginPage extends Component {
     auth.authenticate(email, password)
       .then(user => {
         this.setState({ redirectToReferrer: true });
+        this.props.onSignIn();
       }).catch(err => {
         this.setState({ failed: true });
       });
