@@ -1,36 +1,26 @@
 import React, { Component } from 'react'
 import FilterComponent from '../components/Filter.component'
 import auth from '../services/auth';
+import PhotoDrop from '../components/PhotoDrop.component';
+import PostComponent from '../components/Post.component';
+import PostPage from './Post.page';
 
 export default class HomePage extends Component {
   state = {
-    searchFieldValue: ""
+    searchFieldValue: "",
+    posts: [],
   };
 
-  onSearchFieldChange = e =>
-    this.setState({ searchFieldValue: e.target.value });
+  async componentDidMount() {
+    await fetch('/api/post/all', {
+      method: 'GET',
+    }).then(response => response.json()
+    ).then(body => this.setState({ posts: body }));
+  }
+
+  onSearchFieldChange = e => this.setState({ searchFieldValue: e.target.value });
+
   onSearch = () => console.log("searched " + this.state.searchFieldValue);
-  filterLocation = id => {
-    let location = "";
-    switch (id) {
-      case 0:
-        location = "Brooklyn College";
-        break;
-      case 1:
-        location = "Hunter College";
-        break;
-      case 2:
-        location = "John Jay College";
-        break;
-      case 3:
-        location = "Queens College";
-        break;
-    }
-    this.setState({ searchFieldValue: location });
-    this.props.history.push("/posts", {
-      location: location
-    });
-  };
 
   render() {
     let filters = (
@@ -109,7 +99,7 @@ export default class HomePage extends Component {
     );
 
     let searchField = (
-      <div className="row py-3">
+      <div className="row mb-3">
         <div className="col-lg-12">
           <div className="input-group">
             <input
@@ -134,26 +124,13 @@ export default class HomePage extends Component {
       </div>
     );
 
-    let presetLocations = [
-      "brooklyn-college",
-      "hunter-college",
-      "johnjay-college",
-      "queens-college"
-    ];
-
     return (
       <div>
         {searchField}
-
-        <div className="row p-3">
-          {presetLocations.map((location, index) => (
-            <div className="col-lg-6 px-1">
-              <FilterComponent
-                imgSrc={require(`../logos/${location}-logo.png`)}
-                onClick={() => this.filterLocation(index)}
-              />
-            </div>
-          ))}
+        <div className="card-columns" style={{ columnGap: '2.00rem' }}>
+          {this.state.posts.map((post, i) =>
+            <PostComponent post={post} key={i} />
+          )}
         </div>
       </div>
     );

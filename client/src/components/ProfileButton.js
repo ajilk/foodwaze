@@ -17,7 +17,7 @@ class ProfileButton extends Component {
     return (
       <div className="dropdown ml-auto input-group-append">
         <button className='btn btn-outline-light dropdown-toggle border-right-0 rounded-left' href='#' data-toggle='dropdown'>
-          {this.state.user['firstName']} {this.state.user['lastName']}
+          {this.state.user['firstName']}
         </button>
         <div className='dropdown-menu'>
           <Link to='/profile' className='dropdown-item' style={{ textDecoration: 'none' }}>account</Link>

@@ -1,139 +1,75 @@
 import React, { Component } from "react";
+import { Redirect, withRouter } from 'react-router-dom';
+import PhotoDrop from "./PhotoDrop.component";
 
 class PostForm extends Component {
   state = {
+    title: "",
     description: "",
     location: "",
-    image: "",
-    filter: []
+    image: {},
   };
 
-  Post = () => {
-    console.log(
-      `Description: ${this.state.description} Location: ${this.state.location} Image: ${this.state.image} F: ${this.state.filter}`
-    );
-  };
+  onFieldChange = (name) => {
+    return (event) => this.setState({ [name]: event.target.value })
+  }
 
-  onDescriptionChange = e => this.setState({ description: e.target.value });
-  onLocationChange = e => this.setState({ location: e.target.value });
-  onFilterChange = e => {
-    console.dir(e.target.value);
-    this.setState({
-      filter:
-        // e.target.value
-        [...this.state.filter, e.target.value] // changes the filter array 
-    });
-    console.log(this.state.filter);
-  };
-  //image change
-  onImageChange = e => {
-    let files = e.target.files;
+  onPhotoUpload = (acceptedFiles) => {
+    this.setState({ image: acceptedFiles[0] });
+  }
 
-    let reader = new FileReader();
-    reader.readAsDataURL(files[0]);
+  onPost = e => {
+    e.preventDefault()
+    var formData = new FormData();
+    for (let name in this.state) {
+      formData.append(name, this.state[name]);
+    }
+    fetch('/api/post/create', {
+      method: 'POST',
+      body: formData
+    }).then(response => response.json())
+      .catch(err => console.log(err));
+    this.props.history.push('/');
+  }
 
-    reader.onload = e => {
-      this.setState({ image: e.target.result });
-      //console.log("img data:", e.target.result);
-    };
-  };
-  //end of image change
   render() {
     return (
-      <div className="row py-5 justify-content-center">
-        <div className="col-lg-4 col-md-6 col-12">
-          <div className="row">
-            <div className="col">
-              <h2>Make a post!</h2>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <div className="form-group">
-                <input
-                  type="Description"
-                  name="Description"
-                  className="form-control"
-                  id="DescriptionInput"
-                  aria-describedby="emailHelp"
-                  placeholder="Description"
-                  onChange={this.onDescriptionChange}
-                />
-              </div>
-            </div>
-          </div>
-          {/* Location start */}
-          <div className="row">
-            <div className="col">
-              <div className="form-group">
-                <input
-                  type="Location"
-                  className="form-control"
-                  id="locationInput"
-                  placeholder="Where is this?"
-                  onChange={this.onLocationChange}
-                />
-              </div>
-            </div>
-          </div>
-          {/* Filter begin */}
-          <div className="row">
-            <div className="col">
-              <div className="form-group">
-                <select
-                  type="filter"
-                  className="form-control"
-                  id="Filter"
-                  placeholder="What kind of food are you interested in"
-                  multiple={true}
-                  // onClick={this.onFilterChange}
-                  filter={this.state.value}
-                >
-                  <option onClick={this.onFilterChange} value="grapefruit">
-                    Grapefruit
-                  </option>
-                  <option onClick={this.onFilterChange} value="lime">
-                    Lime
-                  </option>
-                  <option onClick={this.onFilterChange} value="coconut">
-                    Coconut
-                  </option>
-                  <option onClick={this.onFilterChange} value="mango">
-                    Mango
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
-          {/* Filter end */}
-          <div className="row">
-            <div className="col">
-              <div className="form-group">
-                <input
-                  accept="image/*"
-                  type="file"
-                  className="form-control"
-                  id="fileInput"
-                  placeholder="place an image"
-                  onChange={e => this.onImageChange(e)}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <button
-                type="submit"
-                className="btn btn-block btn-outline-secondary"
-                onClick={this.Post}
-              >
-                submit
-              </button>
-            </div>
-          </div>
+      <form onSubmit={this.onPost}>
+        <div className="form-group"><h3>post</h3></div>
+        <div className="form-group">
+          <input
+            className="form-control"
+            type="text"
+            id="titleInput"
+            placeholder="title"
+            onChange={this.onFieldChange('title')}
+          />
         </div>
-      </div>
+        <div className="form-group">
+          <input
+            className="form-control"
+            type="text"
+            id="locationInput"
+            placeholder="location"
+            onChange={this.onFieldChange('location')}
+          />
+        </div>
+        <div className="form-group">
+          <textarea
+            className="form-control"
+            id="descriptionInput"
+            rows="5"
+            placeholder="description"
+            onChange={this.onFieldChange('description')}
+          >
+          </textarea>
+        </div>
+        <div className="form-group">
+          <PhotoDrop onDrop={this.onPhotoUpload} />
+        </div>
+        <button type="submit" className="btn btn btn-block btn-outline-primary">post</button>
+      </form>
     );
   }
 }
-export default PostForm
+export default withRouter(PostForm)

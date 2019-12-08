@@ -28,7 +28,9 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
   });
 
-  User.associate = (models) => { };
+  User.associate = (models) => {
+    User.hasMany(models.Post);
+  };
 
   User.beforeSave((user, options) => {
     if (user.password) user.passwordHash = bcrypt.hashSync(user.password);
