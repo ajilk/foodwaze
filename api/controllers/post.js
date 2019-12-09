@@ -62,7 +62,7 @@ router.get('/all/user', async (req, res) => {
 router.put('/delete', async (req, res) => {
   const { postId } = req.body;
   Post.findByPk(postId).then(post => {
-    if (imageId !== null) cloudinary.uploader.destroy(post.images[0]);
+    cloudinary.uploader.destroy(post.images[0]);
     post.destroy();
     res.status(200).json({ message: `Deleted post: ${postId}` });
   });
