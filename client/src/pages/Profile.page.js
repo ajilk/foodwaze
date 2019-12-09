@@ -14,7 +14,6 @@ export default class ProfilePage extends Component {
   }
 
   fetchPosts = async () => {
-    console.log('1');
     let userPosts = await fetch('/api/post/all/user', {
       method: 'GET',
     }).then(response => response.json());

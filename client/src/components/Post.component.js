@@ -8,6 +8,14 @@ function PostComponent(props) {
   const { post } = props;
   const [hoverRef, isHovered] = useHover();
 
+  const date = new Date(post.createdAt).toLocaleString('en-US', {
+    month: '2-digit',
+    day: '2-digit',
+    year: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit'
+  })
+
   return (
     <div ref={hoverRef} className={`card my-2 ${isHovered ? "shadow-lg" : ""}`}>
       <div className="card-img-top">{
@@ -28,7 +36,7 @@ function PostComponent(props) {
           </div>
           <div className="col-auto my-auto">
             <div className="card-text text-right"> <small class="text-muted">{post.owner['firstName']} {post.owner['lastName']}</small></div>
-            <p class="card-text text-right"><small class="text-muted">{post.createdAt}</small></p>
+            <p class="card-text text-right"><small class="text-muted">{date}</small></p>
           </div>
         </div>
       </div>
