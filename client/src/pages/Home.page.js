@@ -7,6 +7,7 @@ import PostPage from './Post.page';
 export default class HomePage extends Component {
   state = {
     searchFieldValue: "",
+    allPosts: [],
     posts: [],
   };
 
@@ -14,12 +15,25 @@ export default class HomePage extends Component {
     await fetch('/api/post/all', {
       method: 'GET',
     }).then(response => response.json()
-    ).then(body => this.setState({ posts: body }));
+    ).then(body => this.setState({ allPosts: body, posts: body }));
   }
 
-  onSearchFieldChange = e => this.setState({ searchFieldValue: e.target.value });
+  onSearchFieldChange = e => {
+    const searchValue = e.target.value;
+    this.setState({ searchFieldValue: searchValue });
+    if (searchValue === '') this.setState({ posts: this.state.allPosts });
+    else this.onSearch(searchValue);
+  }
 
-  onSearch = () => console.log("searched " + this.state.searchFieldValue);
+  onSearch = (searchValue) => {
+    const regex = new RegExp(searchValue, 'i');
+    var filteredPosts = this.state.allPosts.find(post => {
+      return post['title'].match(regex)
+        || post['location'].match(regex)
+        || post['description'].match(regex)
+    });
+    this.setState({ posts: filteredPosts ? [filteredPosts] : [] });
+  }
 
   render() {
     let filters = (
@@ -126,10 +140,11 @@ export default class HomePage extends Component {
     return (
       <div>
         {searchField}
-        <div className="card-columns" style={{ columnGap: '2.00rem' }}>
-          {this.state.posts.map((post, i) =>
-            <PostComponent post={post} key={i} />
-          )}
+        <div className="card-columns" style={{ columnGap: '2.00rem' }}>{
+          this.state.posts.length
+            ? this.state.posts.map((post, i) => <PostComponent post={post} key={i} />)
+            : null
+        }
         </div>
       </div>
     );
