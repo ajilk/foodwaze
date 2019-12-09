@@ -10,10 +10,26 @@ export default class ProfilePage extends Component {
 
   componentDidMount = async () => {
     auth.getUser(user => this.setState({ user: user }));
+    this.fetchPosts();
+  }
+
+  fetchPosts = async () => {
+    console.log('1');
     let userPosts = await fetch('/api/post/all/user', {
       method: 'GET',
     }).then(response => response.json());
     this.setState({ posts: userPosts });
+  }
+
+  onDelete = async (post) => {
+    let result = await fetch(`/api/post/delete`, {
+      headers: { "Content-Type": "application/json" },
+      method: 'PUT',
+      body: JSON.stringify({
+        postId: post.id,
+      }),
+    }).then(response => response.json());
+    this.fetchPosts();
   }
 
   render() {
@@ -21,7 +37,7 @@ export default class ProfilePage extends Component {
       <div>
         <h1>{this.state.user['firstName']} {this.state.user['lastName']}</h1>
         <div className="card-columns">
-          {this.state.posts.map(post => <PostComponent post={post} key={post.id} />)}
+          {this.state.posts.map(post => <PostComponent onDelete={this.onDelete} post={post} key={post.id} />)}
         </div>
       </div>
     )

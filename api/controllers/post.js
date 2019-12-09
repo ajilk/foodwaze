@@ -34,7 +34,7 @@ router.get('/all', async (req, res) => {
       as: 'owner',
       attributes: ['firstName', 'lastName'],
     }],
-    attributes: ['title', 'location', 'description', 'images', 'createdAt'],
+    attributes: ['id', 'title', 'location', 'description', 'images', 'createdAt'],
     order: [['createdAt', 'DESC']],
     limit: 20,
     subQuery: false,
@@ -51,7 +51,7 @@ router.get('/all/user', async (req, res) => {
       where: { id: req.user['id'] }
 
     }],
-    attributes: ['title', 'location', 'description', 'images', 'createdAt'],
+    attributes: ['id', 'title', 'location', 'description', 'images', 'createdAt'],
     order: [['createdAt', 'DESC']],
     limit: 20,
     subQuery: false,
@@ -59,6 +59,13 @@ router.get('/all/user', async (req, res) => {
   res.status(200).json(posts);
 })
 
-
+router.put('/delete', async (req, res) => {
+  const { postId } = req.body;
+  Post.findByPk(postId).then(post => {
+    if (imageId !== null) cloudinary.uploader.destroy(post.images[0]);
+    post.destroy();
+    res.status(200).json({ message: `Deleted post: ${postId}` });
+  });
+});
 
 module.exports = router;
