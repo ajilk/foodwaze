@@ -3,6 +3,7 @@ import auth from '../services/auth';
 import PhotoDrop from '../components/PhotoDrop.component';
 import PostComponent from '../components/Post.component';
 import PostPage from './Post.page';
+import FilterComponent from '../components/Filter.component';
 
 export default class HomePage extends Component {
   state = {
@@ -21,7 +22,8 @@ export default class HomePage extends Component {
   onSearchFieldChange = e => {
     const searchValue = e.target.value;
     this.setState({ searchFieldValue: searchValue });
-    if (searchValue === '') this.setState({ posts: this.state.allPosts });
+    if (searchValue === '' || !/\S/.test(searchValue))
+      this.setState({ posts: this.state.allPosts });
     else this.onSearch(searchValue);
   }
 
@@ -32,12 +34,43 @@ export default class HomePage extends Component {
         || post['location'].match(regex)
         || post['description'].match(regex)
     });
+    console.log(filteredPosts);
     this.setState({ posts: filteredPosts ? [filteredPosts] : [] });
   }
 
+  onQuickSearch = (searchValue) => {
+    this.setState({ searchFieldValue: searchValue });
+    this.onSearch(searchValue)
+  }
+
   render() {
+    const quickSearches =
+      <div className="row">
+        <div className="col"><button onClick={() => this.onQuickSearch('Brooklyn College')} className="btn btn-outline-dark">Brooklyn College</button></div>
+        <div className="col"><button onCLick={() => this.onQuickSearch('Hunter College')} className="btn-outline-dark">Hunter College   </button></div>
+        <div className="col"><button onCLick={() => this.onQuickSearch('Queens College')} className="btn-outline-dark">Queens College   </button></div>
+        <div className="col"><button onCLick={() => this.onQuickSearch('John Jay College')} className="btn-outline-dark">John Jay College </button></div>
+      </div>
+
     let filters = (
       <>
+        <div className="btn-group">
+          <button
+            type="button"
+            className="btn dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            School
+          </button>
+          <div className="dropdown-menu">
+            <FilterComponent value="Queens College" onFilterClick={this.onQuickSearch} />
+            <FilterComponent value="Brooklyn College" onFilterClick={this.onQuickSearch} />
+            <FilterComponent value="John Jay College" onFilterClick={this.onQuickSearch} />
+            <FilterComponent value="Hunter College" onFilterClick={this.onQuickSearch} />
+          </div>
+        </div>
         <div className="btn-group">
           <button
             type="button"
