@@ -26,7 +26,7 @@ function PostComponent(props) {
       <div className="card-body p-3">
         <h5 className="card-title font-weight-bold mb-2">{post.title}</h5>
         <div className="card-subtitle font-weight-light mb-3">{post.location}</div>
-        <div className="card-text mb-4">{post.description}</div>
+        <div className="card-text mb-4"><pre><p>{post.description}</p></pre></div>
         <div className="row mt-auto">
           <div className="col my-auto">
             {!props.onDelete ? null :
