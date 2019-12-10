@@ -150,7 +150,13 @@ export default class HomePage extends Component {
         <div class="row">
           <div class="col">
             <div class="input-group">
-              <input onChange={this.onSearchFieldChange} class="form-control py-2 border-secondary border-right-0" type="search" placeholder="Try Pizza" />
+              <input
+                onChange={this.onSearchFieldChange}
+                class="form-control py-2 border-secondary border-right-0"
+                type="search"
+                value={this.state.searchFieldValue}
+                placeholder="Try Pizza"
+              />
               <span class="input-group-append">
                 <div class="input-group-text bg-transparent border border-secondary border-left-0"><GoSearch className="p-0" /></div>
               </span>
@@ -159,7 +165,7 @@ export default class HomePage extends Component {
         </div>
         <div className="row no-gutters">{filters}</div>
       </>
-    )
+    );
 
     return (
       <div>
