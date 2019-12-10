@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 // https://usehooks.com/useHover/
 function useHover() {
@@ -20,7 +20,6 @@ function useHover() {
         };
       }
     },
-    [ref.current] // Recall only if ref changes
   );
 
   return [ref, value];

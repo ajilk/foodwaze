@@ -21,7 +21,7 @@ export default class ProfilePage extends Component {
   }
 
   onDelete = async (post) => {
-    let result = await fetch(`/api/post/delete`, {
+    await fetch(`/api/post/delete`, {
       headers: { "Content-Type": "application/json" },
       method: 'PUT',
       body: JSON.stringify({

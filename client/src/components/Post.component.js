@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import useHover from './useHover';
 import { AiOutlineDelete } from 'react-icons/ai';
 
@@ -21,7 +21,7 @@ function PostComponent(props) {
       <div className="card-img-top">{
         !post.images[0]
           ? null
-          : <img className="rounded-top" src={IMAGE_URL + post.images[0]} width="100%" />
+          : <img alt='post-pic' className="rounded-top" src={IMAGE_URL + post.images[0]} width="100%" />
       }</div>
       <div className="card-body p-3">
         <h5 className="card-title font-weight-bold mb-2">{post.title}</h5>
@@ -35,8 +35,8 @@ function PostComponent(props) {
               </btn>}
           </div>
           <div className="col-auto my-auto">
-            <div className="card-text text-right"> <small class="text-muted">{post.owner['firstName']} {post.owner['lastName']}</small></div>
-            <p class="card-text text-right"><small class="text-muted">{date}</small></p>
+            <div className="card-text text-right"> <small className="text-muted">{post.owner['firstName']} {post.owner['lastName']}</small></div>
+            <p className="card-text text-right"><small className="text-muted">{date}</small></p>
           </div>
         </div>
       </div>

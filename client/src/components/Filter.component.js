@@ -7,7 +7,7 @@ export default class FilterComponent extends Component {
     return <a
       className="dropdown-item"
       onClick={this.handleClick}
-      href="#"
+      href={`#${this.props.value}`}
     >{this.props.value}</a>
   }
 }

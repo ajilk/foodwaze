@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import auth from '../services/auth';
-import PhotoDrop from '../components/PhotoDrop.component';
 import PostComponent from '../components/Post.component';
-import PostPage from './Post.page';
 import FilterComponent from '../components/Filter.component';
 import { GoSearch } from "react-icons/go";
 
@@ -30,13 +27,12 @@ export default class HomePage extends Component {
 
   onSearch = (searchValue) => {
     const regex = new RegExp(searchValue, 'i');
-    var filteredPosts = this.state.allPosts.find(post => {
+    var filteredPosts = this.state.allPosts.filter(post => {
       return post['title'].match(regex)
         || post['location'].match(regex)
         || post['description'].match(regex)
     });
-    console.log(filteredPosts);
-    this.setState({ posts: filteredPosts ? [filteredPosts] : [] });
+    this.setState({ posts: filteredPosts });
   }
 
   onQuickSearch = (searchValue) => {
@@ -45,14 +41,6 @@ export default class HomePage extends Component {
   }
 
   render() {
-    const quickSearches =
-      <div className="row">
-        <div className="col"><button onClick={() => this.onQuickSearch('Brooklyn College')} className="btn btn-outline-dark">Brooklyn College</button></div>
-        <div className="col"><button onCLick={() => this.onQuickSearch('Hunter College')} className="btn-outline-dark">Hunter College   </button></div>
-        <div className="col"><button onCLick={() => this.onQuickSearch('Queens College')} className="btn-outline-dark">Queens College   </button></div>
-        <div className="col"><button onCLick={() => this.onQuickSearch('John Jay College')} className="btn-outline-dark">John Jay College </button></div>
-      </div>
-
     let filters = (
       <>
         <div className="btn-group">
@@ -83,15 +71,9 @@ export default class HomePage extends Component {
             Kosher
           </button>
           <div className="dropdown-menu">
-            <a className="dropdown-item" href="#">
-              Kosher
-            </a>
-            <a className="dropdown-item" href="#">
-              Non-kosher
-            </a>
-            <a className="dropdown-item" href="#">
-              Either
-            </a>
+            <a className="dropdown-item" href="#kosher">Kosher</a>
+            <a className="dropdown-item" href="#no-kosher">Non-kosher</a>
+            <a className="dropdown-item" href="#either">Either</a>
           </div>
         </div>
         <div className="btn-group">
@@ -101,19 +83,11 @@ export default class HomePage extends Component {
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
-          >
-            Distance
-          </button>
+          >Distance</button>
           <div className="dropdown-menu">
-            <a className="dropdown-item" href="#">
-              within 2 miles
-            </a>
-            <a className="dropdown-item" href="#">
-              within 5 miles
-            </a>
-            <a className="dropdown-item" href="#">
-              within 10 miles
-            </a>
+            <a className="dropdown-item" href="#2miles">within 2 miles</a>
+            <a className="dropdown-item" href="#5miles">within 5 miles</a>
+            <a className="dropdown-item" href="#10miles">within 10 miles</a>
           </div>
         </div>
         <div className="btn-group">
@@ -127,19 +101,11 @@ export default class HomePage extends Component {
             Preference
           </button>
           <div className="dropdown-menu">
-            <a className="dropdown-item" href="#">
-              Pizza
-            </a>
-            <a className="dropdown-item" href="#">
-              Sushi
-            </a>
-            <a className="dropdown-item" href="#">
-              Drinks
-            </a>
+            <a className="dropdown-item" href="#pizza">Pizza</a>
+            <a className="dropdown-item" href="#sushi">Sushi</a>
+            <a className="dropdown-item" href="#drinks">Drinks</a>
             <div className="dropdown-divider"></div>
-            <a className="dropdown-item" href="#">
-              No Preference
-            </a>
+            <a className="dropdown-item" href="no-preference">No Preference</a>
           </div>
         </div>
       </>
@@ -147,29 +113,31 @@ export default class HomePage extends Component {
 
     let searchField = (
       <>
-        <div class="row">
-          <div class="col">
-            <div class="input-group">
+        <div className="row">
+          <div className="col">
+            <div className="input-group">
               <input
                 onChange={this.onSearchFieldChange}
-                class="form-control py-2 border-secondary border-right-0"
+                className="form-control py-2 border-secondary border-right-0"
                 type="search"
                 value={this.state.searchFieldValue}
                 placeholder="Try Pizza"
               />
-              <span class="input-group-append">
-                <div class="input-group-text bg-transparent border border-secondary border-left-0"><GoSearch className="p-0" /></div>
+              <span className="input-group-append">
+                <div className="input-group-text bg-transparent border border-secondary border-left-0">
+                  <GoSearch className="p-0" />
+                </div>
               </span>
             </div>
           </div>
         </div>
-        <div className="row no-gutters">{filters}</div>
       </>
     );
 
     return (
       <div>
-        <div className="my-3">{searchField}</div>
+        <div>{searchField}</div>
+        <div className="row no-gutters mb-3">{filters}</div>
         <div className="card-columns" style={{ columnGap: '2.00rem' }}>{
           this.state.posts.length
             ? this.state.posts.map((post, i) => <PostComponent post={post} key={i} />)
