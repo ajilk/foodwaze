@@ -27,7 +27,7 @@ export default class AboutPage extends Component {
       <div className="text-center">
         <h2>Contributors</h2>
         <div className="row pt-5">
-          <div className="col">
+          <div className="col-lg-4 col-12 my-3">
             <Contributor
               name="Azimjon Ilkhomov"
               website="https://ajilk.com"
@@ -36,14 +36,14 @@ export default class AboutPage extends Component {
               twitter="https://twitter.com/ajilkhomov"
             />
           </div>
-          <div className="col">
+          <div className="col-lg-4 col-12 my-3">
             <Contributor
               name="Saar Haber"
               linkedin="https://linkedin.com/saarhaber"
               github="https://github.com/saarhaber"
             />
           </div>
-          <div className="col">
+          <div className="col-lg-4 col-12 my-3">
             <Contributor
               name="Daniel Pepin"
               linkedin="https://linkedin.com/in/danielp1299/"

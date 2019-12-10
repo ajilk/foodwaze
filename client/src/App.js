@@ -9,6 +9,7 @@ import NavbarComponent from "./components/Navbar.component";
 import PrivateRoute from './components/PrivateRoute';
 import auth from './services/auth';
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import FooterComponent from "./components/Footer.component";
 
 class App extends Component {
   state = {
@@ -32,7 +33,7 @@ class App extends Component {
     return (
       <Router>
         <NavbarComponent authenticated={this.state.authenticated} user={this.state.user} onSignOut={this.onSignOut} />
-        <div className="container">
+        <div className="container" style={{paddingTop: '100px', paddingBottom: '150px'}}>
           <Route exact path="/" component={HomePage} />
           <Route path="/login" render={props => <LoginPage onSignIn={this.onSignIn} {...props} />} />
           <Route path="/signup" component={SignupPage} />
@@ -40,6 +41,7 @@ class App extends Component {
           <PrivateRoute authenticated={this.state.authenticated} path="/profile" component={ProfilePage} />
           <PrivateRoute authenticated={this.state.authenticated} path="/post" component={PostPage} />
         </div>
+        <FooterComponent />
       </Router>
     );
   }
