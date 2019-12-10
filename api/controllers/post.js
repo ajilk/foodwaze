@@ -11,6 +11,7 @@ router.post('/create', upload.single('image'), (req, res) => {
 
   if (req.user) {
     cloudinary.uploader.upload(req.file.path, (result) => {
+      console.log(result);
       Post.create({
         title: req.body.title,
         location: req.body.location,
@@ -20,8 +21,8 @@ router.post('/create', upload.single('image'), (req, res) => {
         req.user.addPosts(post)
         res.json({ postID: post.get('id') })
       });
+      fs.unlinkSync(req.file.path);
     });
-    fs.unlinkSync(req.file.path);
   } else {
     res.status(500).json({ error: 'User not logged in?' })
   }
