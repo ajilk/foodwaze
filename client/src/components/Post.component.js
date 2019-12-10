@@ -24,9 +24,9 @@ function PostComponent(props) {
           : <img className="rounded-top" src={IMAGE_URL + post.images[0]} width="100%" />
       }</div>
       <div className="card-body p-3">
-        <h5 className="card-title font-weight-bold mb-0">{post.title}</h5>
-        <div className="card-subtitle font-weight-light">{post.location}</div>
-        <div className="card-text pb-4">{post.description}</div>
+        <h5 className="card-title font-weight-bold mb-2">{post.title}</h5>
+        <div className="card-subtitle font-weight-light mb-3">{post.location}</div>
+        <div className="card-text mb-4">{post.description}</div>
         <div className="row mt-auto">
           <div className="col my-auto">
             {!props.onDelete ? null :

@@ -4,6 +4,7 @@ import PhotoDrop from '../components/PhotoDrop.component';
 import PostComponent from '../components/Post.component';
 import PostPage from './Post.page';
 import FilterComponent from '../components/Filter.component';
+import { GoSearch } from "react-icons/go";
 
 export default class HomePage extends Component {
   state = {
@@ -145,34 +146,24 @@ export default class HomePage extends Component {
     );
 
     let searchField = (
-      <div className="row mb-3">
-        <div className="col-lg-12">
-          <div className="input-group">
-            <input
-              type="text"
-              className="form-control rounded-left border-right-0"
-              id="searchField"
-              placeholder="Try Queens College"
-              value={this.state.searchFieldValue}
-              onChange={this.onSearchFieldChange}
-            ></input>
-            <div className="input-group-append">
-              <button
-                onClick={this.onSearch}
-                className="btn btn-outline-dark rounded-right"
-              >
-                search
-              </button>
+      <>
+        <div class="row">
+          <div class="col">
+            <div class="input-group">
+              <input onChange={this.onSearchFieldChange} class="form-control py-2 border-secondary border-right-0" type="search" placeholder="Try Pizza" />
+              <span class="input-group-append">
+                <div class="input-group-text bg-transparent border border-secondary border-left-0"><GoSearch className="p-0" /></div>
+              </span>
             </div>
           </div>
         </div>
-        <div className="col-auto">{filters}</div>
-      </div>
-    );
+        <div className="row no-gutters">{filters}</div>
+      </>
+    )
 
     return (
       <div>
-        {searchField}
+        <div className="my-3">{searchField}</div>
         <div className="card-columns" style={{ columnGap: '2.00rem' }}>{
           this.state.posts.length
             ? this.state.posts.map((post, i) => <PostComponent post={post} key={i} />)
