@@ -6,16 +6,14 @@ const PhotoDrop = (props) => {
   const maxSize = 5242880;
   const onDrop = useCallback(acceptedFiles => {
     props.onDrop(acceptedFiles);
-  }, []);
+  }, [props]);
 
   const {
     isDragActive,
     getRootProps,
     getInputProps,
     isDragReject,
-    acceptedFiles,
     rejectedFiles,
-    isMultiple,
   } = useDropzone({ onDrop, accept: 'image/jpg, image/jpeg', minSize: 0, maxSize, multiple: false });
 
   const isTooLarge = rejectedFiles.length > 0 && rejectedFiles[0].size > maxSize;

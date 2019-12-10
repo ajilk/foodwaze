@@ -4,6 +4,7 @@ import LoginPage from "./pages/Login.page";
 import SignupPage from "./pages/Signup.page";
 import PostPage from "./pages/Post.page";
 import ProfilePage from "./pages/Profile.page";
+import AboutPage from "./pages/About.page";
 import NavbarComponent from "./components/Navbar.component";
 import PrivateRoute from './components/PrivateRoute';
 import auth from './services/auth';
@@ -35,6 +36,7 @@ class App extends Component {
           <Route exact path="/" component={HomePage} />
           <Route path="/login" render={props => <LoginPage onSignIn={this.onSignIn} {...props} />} />
           <Route path="/signup" component={SignupPage} />
+          <Route path="/about" component={AboutPage} />
           <PrivateRoute authenticated={this.state.authenticated} path="/profile" component={ProfilePage} />
           <PrivateRoute authenticated={this.state.authenticated} path="/post" component={PostPage} />
         </div>
