@@ -1,1 +1,1 @@
-<div style="text-align: center"><img src="./brand.png" /></div>
+<div style="text-align:center"><img width="400" src="./brand.png" /></div>
