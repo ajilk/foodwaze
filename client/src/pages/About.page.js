@@ -39,6 +39,7 @@ export default class AboutPage extends Component {
           <div className="col-lg-4 col-12 my-3">
             <Contributor
               name="Saar Haber"
+              website="http://saarhaber.github.io/MyFirstWebsite/index.html"
               linkedin="https://linkedin.com/in/saarhaber"
               github="https://github.com/saarhaber"
             />
